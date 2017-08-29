@@ -2,5 +2,11 @@
   "name": "ImmortaltWeather",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {},
+  "proxies": [
+    {
+      "path": "/weather/query",
+      "proxyUrl": "http://op.juhe.cn/onebox/weather/query"
+    }
+  ]
 }

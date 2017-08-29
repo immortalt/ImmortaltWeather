@@ -15,16 +15,25 @@
 <ion-content>
 
     <ion-list>
-        <ion-item>城市：{{city}}</ion-item>
-        <!-- <ion-item>日期：{{realtime.date}}&nbsp;{{realtime.moon}}</ion-item>
-        <ion-item>更新时间：{{realtime.time}}</ion-item>
-
-        <ion-item>温度：{{weather.temperature}}°C</ion-item>
-        <ion-item>湿度：{{weather.humidity}}%</ion-item>
-        <ion-item>天气：{{weather.info}}</ion-item>
-        <ion-item>天气图片ID：{{weather.img}}</ion-item>
-
-        <ion-item>风向：{{wind.direct}}</ion-item>
-        <ion-item>风力：{{wind.power}}</ion-item> -->
+        <ion-item>城市：{{cityname}}&nbsp;{{basic.city}}</ion-item>
+        <ion-item>更新时间：{{update.loc}}</ion-item>
+        <ion-item-group>
+            <ion-item-divider color="light">当前天气</ion-item-divider>
+            <ion-item>天气：{{cond.txt}}</ion-item>
+            <ion-item *ngIf="cond.code!=null">
+                <img height="100" width="100" src="https://cdn.heweather.com/cond_icon/{{cond.code}}.png">
+            </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider color="light">空气质量</ion-item-divider>
+            <ion-item>空气质量等级：{{city.qlty}}</ion-item>
+            <ion-item>空气污染指数：{{city.aqi}}</ion-item>
+            <ion-item>一氧化碳：{{city.co}}</ion-item>
+            <ion-item>二氧化氮：{{city.no2}}</ion-item>
+            <ion-item>臭氧：{{city.o3}}</ion-item>
+            <ion-item>pm10：{{city.pm10}}</ion-item>
+            <ion-item>pm25：{{city.pm25}}</ion-item>
+            <ion-item>二氧化硫：{{city.so2}}</ion-item>
+        </ion-item-group>
     </ion-list>
 </ion-content>

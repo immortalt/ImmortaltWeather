@@ -1,11 +1,14 @@
 import { HeWeather5 } from '../models/HeWeather5';
 
 export class AppConfig {
-
+    /**
+             * IP
+             */
+    public static IP: any = null;
     /**
          * 所在城市
          */
-    public static city: any = null;
+    public static cityname: any = null;
     /**
          * 城市列表
          */
@@ -13,5 +16,5 @@ export class AppConfig {
     /**
      * 得到的天气信息
      */
-    public static weatherData: HeWeather5 = null;
+    public static weatherData: HeWeather5.Data = null;
 }

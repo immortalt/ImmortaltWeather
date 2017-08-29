@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-// import { ItemDetailPage } from '../item-detail/item-detail';
-
-import { Item } from '../../models/item';
-
-// import { Items } from '../../providers/providers';
-
-
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html'

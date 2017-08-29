@@ -1,22 +1,30 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
+    <ion-navbar>
+        <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
 
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addPlace()">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addPlace()">
         <ion-icon name="add"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content>
 
-  <ion-list>
-    <ion-item>
-      天气
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item>城市：{{city}}</ion-item>
+        <!-- <ion-item>日期：{{realtime.date}}&nbsp;{{realtime.moon}}</ion-item>
+        <ion-item>更新时间：{{realtime.time}}</ion-item>
+
+        <ion-item>温度：{{weather.temperature}}°C</ion-item>
+        <ion-item>湿度：{{weather.humidity}}%</ion-item>
+        <ion-item>天气：{{weather.info}}</ion-item>
+        <ion-item>天气图片ID：{{weather.img}}</ion-item>
+
+        <ion-item>风向：{{wind.direct}}</ion-item>
+        <ion-item>风力：{{wind.power}}</ion-item> -->
+    </ion-list>
 </ion-content>

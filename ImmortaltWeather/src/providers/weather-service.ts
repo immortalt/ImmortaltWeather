@@ -12,8 +12,10 @@ export class WeatherService {
     constructor(public http: Http, public api: Api) {
     }
 
-    query(params?: any) {
-        params['key'] = '9f080741346f10e5858c16e3e092e10e';     
+    getWeatherData(cityname: string) {
+        let params: any = {};
+        params['key'] = '9f080741346f10e5858c16e3e092e10e';
+        params['cityname'] = cityname;
         return this.api.getData('http://op.juhe.cn/onebox/weather/query', params);
     }
 }

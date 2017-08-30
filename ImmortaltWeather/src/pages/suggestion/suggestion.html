@@ -5,12 +5,70 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
-  <ion-list>
-    <ion-item>
-      外出推荐
-    </ion-item>
+  <ion-list  *ngIf="suggestion.comf!=null">
+    <ion-item-group>
+      <ion-item-divider color="light">舒适度指数</ion-item-divider>
+      <ion-item>
+        <div>
+          <p> {{suggestion.comf.brf}}</p>
+          <p>{{suggestion.comf.txt}}</p>
+        </div>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+        <ion-item-divider color="light">洗车指数</ion-item-divider>
+        <ion-item>
+          <div>
+            <p> {{suggestion.cw.brf}}</p>
+            <p>{{suggestion.cw.txt}}</p>
+          </div>
+        </ion-item>
+      </ion-item-group>
+      <ion-item-group>
+          <ion-item-divider color="light">穿衣指数</ion-item-divider>
+          <ion-item>
+            <div>
+              <p> {{suggestion.drsg.brf}}</p>
+              <p>{{suggestion.drsg.txt}}</p>
+            </div>
+          </ion-item>
+        </ion-item-group>
+        <ion-item-group>
+            <ion-item-divider color="light">感冒指数</ion-item-divider>
+            <ion-item>
+              <div>
+                <p> {{suggestion.flu.brf}}</p>
+                <p>{{suggestion.flu.txt}}</p>
+              </div>
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+              <ion-item-divider color="light">运动指数</ion-item-divider>
+              <ion-item>
+                <div>
+                  <p> {{suggestion.sport.brf}}</p>
+                  <p>{{suggestion.sport.txt}}</p>
+                </div>
+              </ion-item>
+            </ion-item-group>
+            <ion-item-group>
+                <ion-item-divider color="light">旅游指数</ion-item-divider>
+                <ion-item>
+                  <div>
+                    <p> {{suggestion.trav.brf}}</p>
+                    <p>{{suggestion.trav.txt}}</p>
+                  </div>
+                </ion-item>
+              </ion-item-group>
+              <ion-item-group>
+                  <ion-item-divider color="light">紫外线指数</ion-item-divider>
+                  <ion-item>
+                    <div>
+                      <p> {{suggestion.uv.brf}}</p>
+                      <p>{{suggestion.uv.txt}}</p>
+                    </div>
+                  </ion-item>
+                </ion-item-group>
   </ion-list>
 </ion-content>

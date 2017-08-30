@@ -22,29 +22,38 @@ export class WeatherPage {
   }
 
   ionViewDidLoad() {
-    this.loadWeather();
+    this.uopdateWeather(false);
   }
-
-  async loadWeather() {
-    AppConfig.cityname = await this.weatherService.getCity();
-    console.log('AppConfig.cityname', AppConfig.cityname);
-    if (AppConfig.cityname != null) {
-      this.cityname = AppConfig.cityname;
-      AppConfig.weatherData = await this.weatherService.getWeatherData(AppConfig.cityname) as HeWeather5.Data;
-      console.log('AppConfig.weatherData', AppConfig.weatherData);
-      if (AppConfig.weatherData != null) {
-        this.basic = AppConfig.weatherData.basic;
-        this.update = this.basic.update;
-        this.city = AppConfig.weatherData.aqi.city;
-        this.now = AppConfig.weatherData.now;
-        this.cond = AppConfig.weatherData.now.cond;
-        this.wind = this.now.wind;
+  //更新天气
+  //force：是否强制刷新
+  async uopdateWeather(force: boolean) {
+    if (AppConfig.weatherData == null || force) {//如果需要重新获取数据
+      AppConfig.cityname = await this.weatherService.getCity();
+      console.log('AppConfig.cityname', AppConfig.cityname);
+      if (AppConfig.cityname != null) {
+        this.cityname = AppConfig.cityname;
+        AppConfig.weatherData = await this.weatherService.getWeatherData(AppConfig.cityname) as HeWeather5.Data;
+        console.log('AppConfig.weatherData', AppConfig.weatherData);
+        if (AppConfig.weatherData != null) {
+          this.loadWeather();
+        } else {
+          alert('获取天气失败！');
+        }
       } else {
-        alert('获取天气失败！');
+        alert('定位城市失败！');
       }
     } else {
-      alert('定位城市失败！');
+      this.loadWeather();
     }
+  }
+  //载入天气
+  loadWeather() {
+    this.basic = AppConfig.weatherData.basic;
+    this.update = this.basic.update;
+    this.city = AppConfig.weatherData.aqi.city;
+    this.now = AppConfig.weatherData.now;
+    this.cond = AppConfig.weatherData.now.cond;
+    this.wind = this.now.wind;
   }
   getWeatherIcon(code: string): string {
     return AppConfig.weatherFolder + code + ".png";

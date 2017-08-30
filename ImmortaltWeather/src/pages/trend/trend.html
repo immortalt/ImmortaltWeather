@@ -8,9 +8,58 @@
 
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      趋势
-    </ion-item>
+  <ion-list *ngIf="hourly_forecast!=[]">
+    <ion-item-group>
+      <ion-item-divider color="light">未来小时趋势</ion-item-divider>
+      <ion-item *ngFor="let h of hourly_forecast;">
+        <p>{{h.date}}</p>
+        <p>湿度：{{h.hum}}%</p>
+        <p>降水概率：{{h.pop}}%</p>
+        <p>气压：{{h.pres}}</p>
+        <p>温度：{{h.tmp}}°C</p>
+        <div>
+          <p>风向：{{h.wind.dir}}</p>
+          <p>风向角度：{{h.wind.deg}}</p>
+          <p>风力：{{h.wind.sc}}</p>
+          <p>风速：{{h.wind.spd}}</p>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <ion-list *ngIf="daily_forecast!=[]">
+    <ion-item-group>
+      <ion-item-divider color="light">未来7天趋势</ion-item-divider>
+      <ion-item *ngFor="let h of daily_forecast;">
+        <p>{{h.date}}</p>
+        <div *ngIf="h.cond!=null">
+          <p>
+            白天天气：{{h.cond.txt_d}}
+            <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_d)}}">
+          </p>
+          <p>
+            夜晚天气：{{h.cond.txt_n}}
+            <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_n)}}">
+          </p>
+        </div>
+        <p>最高温度：{{h.tmp.max}}°C</p>
+        <p>最低温度：{{h.tmp.min}}°C</p>
+        <p>湿度：{{h.hum}}%</p>
+        <p>降水量：{{h.pcpn}}%</p>
+        <p>气压：{{h.pres}}</p>
+        <p>能见度：{{h.vis}}</p>
+        <div>
+          <p>风向：{{h.wind.dir}}</p>
+          <p>风向角度：{{h.wind.deg}}</p>
+          <p>风力：{{h.wind.sc}}</p>
+          <p>风速：{{h.wind.spd}}</p>
+        </div>
+        <div *ngIf="h.astro!=null">
+            <p>月升时间：{{h.astro.mr}}</p>
+            <p>月落时间：{{h.astro.ms}}</p>
+            <p>日出时间：{{h.astro.sr}}</p>
+            <p>日落时间：{{h.astro.ss}}</p>
+        </div>
+      </ion-item>
+    </ion-item-group>
   </ion-list>
 </ion-content>

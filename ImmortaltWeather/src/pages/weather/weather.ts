@@ -16,6 +16,7 @@ export class WeatherPage {
   now: HeWeather5.Now = {} as HeWeather5.Now;//当前情况
   cond: HeWeather5.Cond3 = {} as HeWeather5.Cond3;//当前情况
   city: HeWeather5.City = {} as HeWeather5.City;//城市空气指数
+  wind: HeWeather5.Wind3 = {} as HeWeather5.Wind3;//风向
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
     , public weatherService: WeatherService) {
   }
@@ -37,6 +38,7 @@ export class WeatherPage {
         this.city = AppConfig.weatherData.aqi.city;
         this.now = AppConfig.weatherData.now;
         this.cond = AppConfig.weatherData.now.cond;
+        this.wind = this.now.wind;
       } else {
         alert('获取天气失败！');
       }

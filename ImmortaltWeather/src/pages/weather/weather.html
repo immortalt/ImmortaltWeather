@@ -13,16 +13,20 @@
 </ion-header>
 
 <ion-content>
-
     <ion-list>
         <ion-item>城市：{{cityname}}&nbsp;{{basic.city}}</ion-item>
         <ion-item>更新时间：{{update.loc}}</ion-item>
         <ion-item-group>
             <ion-item-divider color="light">当前天气</ion-item-divider>
-            <ion-item>天气：{{cond.txt}}</ion-item>
-            <ion-item *ngIf="cond.code!=null">
-                <img height="100" width="100" src="{{getWeatherIcon(cond.code)}}">
+            <ion-item>天气：{{cond.txt}}
+                <img *ngIf="cond.code!=null" height="30" width="30" src="{{getWeatherIcon(cond.code)}}">
             </ion-item>
+            <ion-item>体感温度：{{now.fl}}°C</ion-item>
+            <ion-item>湿度：{{now.hum}}%</ion-item>
+            <ion-item>降水量：{{now.pcpn}}</ion-item>
+            <ion-item>气压：{{now.pres}}</ion-item>
+            <ion-item>温度：{{now.tmp}}°C</ion-item>
+            <ion-item>能见度：{{now.vis}}</ion-item>
         </ion-item-group>
         <ion-item-group>
             <ion-item-divider color="light">空气质量</ion-item-divider>
@@ -35,5 +39,16 @@
             <ion-item>pm25：{{city.pm25}}</ion-item>
             <ion-item>二氧化硫：{{city.so2}}</ion-item>
         </ion-item-group>
+        <!-- <ion-item-group>
+            <ion-item-divider color="light">天气预报</ion-item-divider>
+            <ion-item>空气质量等级：{{city.qlty}}</ion-item>
+            <ion-item>空气污染指数：{{city.aqi}}</ion-item>
+            <ion-item>一氧化碳：{{city.co}}</ion-item>
+            <ion-item>二氧化氮：{{city.no2}}</ion-item>
+            <ion-item>臭氧：{{city.o3}}</ion-item>
+            <ion-item>pm10：{{city.pm10}}</ion-item>
+            <ion-item>pm25：{{city.pm25}}</ion-item>
+            <ion-item>二氧化硫：{{city.so2}}</ion-item>
+        </ion-item-group> -->
     </ion-list>
 </ion-content>

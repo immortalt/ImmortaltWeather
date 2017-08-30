@@ -17,4 +17,8 @@ export class AppConfig {
      * 得到的天气信息
      */
     public static weatherData: HeWeather5.Data = null;
+    /**
+     * 天气图标
+     */
+    public static weatherFolder: string = 'assets/img/weather/';
 }

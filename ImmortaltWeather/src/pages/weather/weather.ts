@@ -44,7 +44,9 @@ export class WeatherPage {
       alert('定位城市失败！');
     }
   }
-
+  getWeatherIcon(code: string): string {
+    return AppConfig.weatherFolder + code + ".png";
+  }
   addPlace() {
     // let addModal = this.modalCtrl.create(ItemCreatePage);
     // addModal.onDidDismiss(item => {

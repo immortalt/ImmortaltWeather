@@ -1,6 +1,8 @@
 {
-    "name": "ImmortaltWeather",
-    "app_id": "",
-    "type": "ionic-angular",
-    "integrations": {}
+  "name": "ImmortaltWeather",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

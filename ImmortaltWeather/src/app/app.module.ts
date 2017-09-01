@@ -5,6 +5,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage, IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
+import { AppConfig } from './app.config';
 
 import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
@@ -22,7 +23,6 @@ import { Settings } from '../providers/settings';
 import { WeatherService } from '../providers/weather-service';
 
 import { Camera } from '@ionic-native/camera';
-import { GoogleMaps } from '@ionic-native/google-maps';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -74,7 +74,7 @@ export function provideSettings(storage: Storage) {
         deps: [Http]
       }
     }),
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, AppConfig.ionicConfig),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -95,7 +95,6 @@ export function provideSettings(storage: Storage) {
     WeatherService,
     Api,
     Camera,
-    GoogleMaps,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

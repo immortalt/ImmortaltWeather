@@ -51,19 +51,18 @@
 <ion-content fullscreen elestic-header>
     <section class="weather-image">
         <section class="weather-banner" padding>
-            <span class="city">城市：{{cityname}} {{basic.city}}</span>
+            <span class="city">{{basic.city}}&nbsp;{{cityname}} </span>
             <span class="weather-time">更新时间：{{update.loc}}</span>
         </section>
     </section>
-    <h4 text-center>当前天气</h4>
+    <!-- <h4 text-center>当前天气</h4> -->
     <section class="main-content">
         <ion-grid class="main-features">
             <ion-row>
                 <ion-col text-center>
-                    <ion-icon name="ios-cloud-outline"></ion-icon>
+                    <img *ngIf="cond.code!=null" height="50" width="50" src="{{getWeatherIcon(cond.code)}}">
                     <span class="item-block flex-self">
                         天气：{{cond.txt}}
-                        <img *ngIf="cond.code!=null" height="30" width="30" src="{{getWeatherIcon(cond.code)}}">
                     </span>
                 </ion-col>
                 <ion-col text-center>

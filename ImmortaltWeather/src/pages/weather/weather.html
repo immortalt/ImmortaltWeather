@@ -51,8 +51,8 @@
 <ion-content fullscreen elestic-header>
     <section class="weather-image">
         <section class="weather-banner" padding>
-            <span class="weather-time">更新时间：{{update.loc}}</span>
             <span class="city">城市：{{cityname}} {{basic.city}}</span>
+            <span class="weather-time">更新时间：{{update.loc}}</span>
         </section>
     </section>
     <h4 text-center>当前天气</h4>
@@ -130,7 +130,41 @@
 
     </section>
     <h4 text-center>空气质量</h4>
+    <section class="main-content">
+        <ion-grid class="main-features">
+            <ion-row>
+                <ion-col text-center>
+                    <ion-icon name="ios-ribbon"></ion-icon>
+                    <span class="item-block flex-self">
+                                空气质量等级：{{city.qlty}}
+                        </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="ios-nuclear-outline"></ion-icon>
+                    <span class="item-block flex-self">
+                                空气污染指数：{{city.aqi}}
+                            </span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
+        <ion-grid class="listing-details">
+            <ion-row>
+                <ion-col col-6>
+                    一氧化碳：{{city.co}}
+                </ion-col>
+                <ion-col col-6>
+                    二氧化氮：{{city.no2}}
+                </ion-col>
+                <ion-col col-6>臭氧：{{city.o3}}</ion-col>
+                <ion-col col-6>pm10：{{city.pm10}}</ion-col>
+                <ion-col col-6>pm25：{{city.pm25}}</ion-col>
+                <ion-col col-6>二氧化硫：{{city.so2}}</ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+    </section>
 </ion-content>
 <!-- <ion-footer>
     <button ion-button large full no-margin color="danger">

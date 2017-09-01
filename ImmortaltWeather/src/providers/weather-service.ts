@@ -29,14 +29,13 @@ export class WeatherService {
         });
         return p;
     }
-    baseurl = 'https://free-api.heweather.com/v5/';
+    baseurl = 'http://weatherapi.immortalt.com:8888/api/';
     getWeatherData(city: string) {
         var that = this;
         var p = new Promise(function (resolve, reject) {
             let params: any = {};
-            params['key'] = '3e97be1f98e64aa59ca2d1c85a6360bc';
             params['city'] = city;
-            let r = that.api.getData(that.baseurl + 'weather', params);
+            let r = that.api.getData(that.baseurl + 'weather/query', params);
             r.subscribe(r => {
                 if (r != null && r.HeWeather5 != null) {
                     console.log(r.HeWeather5[0]);

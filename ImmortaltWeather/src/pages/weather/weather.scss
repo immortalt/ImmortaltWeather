@@ -1,3 +1,91 @@
 page-weather {
+    $black-overlay: rgba(0,0,0,.3);
+    $text-color: #666;
+    $banner-text-color: white;
+    $content-color: whitesmoke;
+    $detail-background: rgba(236,236,236,.8);
 
+   /* Header */
+   .toolbar-background {
+       border-color: transparent;
+       background: $black-overlay;
+   }
+
+   .bar-button,
+   .toolbar-title {
+       color: $banner-text-color;
+   }
+
+   /* Image */
+   .weather-image{
+       background-size: cover;
+       height: 37.5vh;
+       position: relative;
+       background-image:url('./../../assets/img/background.png');  
+       background-size: contain;
+       background-repeat: no-repeat;
+    }
+
+   .weather-banner {
+       color: $banner-text-color;
+       background: $black-overlay;
+       height: 10vh;
+       width: 100vw;
+       position: absolute;
+       bottom: -1px;
+
+       .weather-time {
+           display: block;
+           font-size: 1.2rem;
+       }
+
+       .city {
+           font-size: 2.2rem;
+       }
+   }
+   /* Content */
+   .content {
+       background: $content-color;
+       .flex-self{
+        display: flex;
+        justify-content: center;
+       }
+   }
+
+   .scroll-content {
+       padding-top: 0 !important;
+   }
+
+   .main-content {
+       color: $text-color;
+
+   }
+   .listing-details ion-col {
+       padding: 1rem;
+       margin: 0.5rem 1%;
+       max-width: 48%;
+       background: $detail-background;
+       ion-icon {
+           margin-right: .5rem;
+       }
+   }
+
+   .main-features {
+    ion-col:first-child{
+        color: map-get($colors,primary);
+    }
+    ion-col:nth-child(2){
+        color: map-get($colors,danger);
+    }
+    //    color: #3cc59a;
+
+    ion-icon {
+        font-size: 5.5rem !important;
+    }
+   }
+
+   .item-block {
+       text-align: center;
+       display: block;
+   }
 }

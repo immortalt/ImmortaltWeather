@@ -1,18 +1,4 @@
-<ion-header>
-
-    <ion-navbar>
-        <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
-
-        <ion-buttons end>
-            <button ion-button icon-only (click)="addPlace()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-        </ion-buttons>
-    </ion-navbar>
-
-</ion-header>
-
-<ion-content>
+<!-- <ion-content>
     <ion-list>
         <ion-item>城市：{{cityname}}&nbsp;{{basic.city}}</ion-item>
         <ion-item>更新时间：{{update.loc}}</ion-item>
@@ -46,16 +32,74 @@
             <ion-item>pm25：{{city.pm25}}</ion-item>
             <ion-item>二氧化硫：{{city.so2}}</ion-item>
         </ion-item-group>
-        <!-- <ion-item-group>
-            <ion-item-divider color="light">天气预报</ion-item-divider>
-            <ion-item>空气质量等级：{{city.qlty}}</ion-item>
-            <ion-item>空气污染指数：{{city.aqi}}</ion-item>
-            <ion-item>一氧化碳：{{city.co}}</ion-item>
-            <ion-item>二氧化氮：{{city.no2}}</ion-item>
-            <ion-item>臭氧：{{city.o3}}</ion-item>
-            <ion-item>pm10：{{city.pm10}}</ion-item>
-            <ion-item>pm25：{{city.pm25}}</ion-item>
-            <ion-item>二氧化硫：{{city.so2}}</ion-item>
-        </ion-item-group> -->
+       
     </ion-list>
+</ion-content> -->
+
+<ion-header no-border>
+    <ion-navbar>
+        <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="addPlace()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen elestic-header>
+    <section class="weather-image">
+        <section class="weather-banner" padding>
+            <span class="weather-time">更新时间：{{update.loc}}</span>
+            <span class="city">城市：{{cityname}} {{basic.city}}</span>
+        </section>
+    </section>
+    <ion-item-divider color="light">当前天气</ion-item-divider>
+    <section class="main-content">
+        <ion-grid class="main-features">
+            <ion-row>
+                <ion-col text-center>
+                    <ion-icon name="ios-cloud-outline"></ion-icon>
+                    <span class="item-block flex-self">
+                        天气：{{cond.txt}}
+                        <img *ngIf="cond.code!=null" height="30" width="30" src="{{getWeatherIcon(cond.code)}}">
+                    </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="ios-flame"></ion-icon>
+                    <span class="item-block flex-self">
+                            温度：{{now.tmp}}°C
+                    </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="ios-water-outline"></ion-icon>
+                    <span class="item-block flex-self">
+                            湿度：{{now.hum}}%
+                    </span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="listing-details">
+            <ion-row>
+                <ion-col col-6>
+                    <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl}}°C
+                </ion-col>
+                <ion-col col-6>
+                    <ion-icon name="ios-water"></ion-icon>降水量：{{now.pcpn}}
+                </ion-col>
+                <ion-col col-6>
+                    <ion-icon name="ios-speedometer-outline"></ion-icon>气压：{{now.pres}}
+                </ion-col>
+                <ion-col col-6>
+                    <ion-icon name="ios-partly-sunny-outline"></ion-icon>能见度：{{now.vis}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </section>
 </ion-content>
+<!-- <ion-footer>
+    <button ion-button large full no-margin color="danger">
+      备用按钮
+    </button>
+</ion-footer> -->

@@ -55,7 +55,7 @@
             <span class="city">城市：{{cityname}} {{basic.city}}</span>
         </section>
     </section>
-    <ion-item-divider color="light">当前天气</ion-item-divider>
+    <h4 text-center>当前天气</h4>
     <section class="main-content">
         <ion-grid class="main-features">
             <ion-row>
@@ -67,7 +67,7 @@
                     </span>
                 </ion-col>
                 <ion-col text-center>
-                    <ion-icon name="ios-flame"></ion-icon>
+                    <ion-icon name="ios-thermometer-outline"></ion-icon>
                     <span class="item-block flex-self">
                             温度：{{now.tmp}}°C
                     </span>
@@ -97,6 +97,40 @@
             </ion-row>
         </ion-grid>
     </section>
+    <h4 text-center>风力风向</h4>
+    <section class="main-content">
+        <ion-grid class="main-features">
+            <ion-row>
+                <ion-col text-center>
+                    <ion-icon name="ios-swap"></ion-icon>
+                    <span class="item-block flex-self">
+                            风向：{{wind.dir}}
+                    </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="ios-send-outline"></ion-icon>
+                    <span class="item-block flex-self">
+                            风向角度：{{wind.deg}}
+                        </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="md-aperture"></ion-icon>
+                    <span class="item-block flex-self">
+                            风力：{{wind.sc}}
+                        </span>
+                </ion-col>
+                <ion-col text-center>
+                    <ion-icon name="ios-jet"></ion-icon>
+                    <span class="item-block flex-self">
+                                风速：{{wind.spd}}
+                    </span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </section>
+    <h4 text-center>空气质量</h4>
+
 </ion-content>
 <!-- <ion-footer>
     <button ion-button large full no-margin color="danger">

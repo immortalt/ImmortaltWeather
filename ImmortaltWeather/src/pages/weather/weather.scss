@@ -19,7 +19,7 @@ page-weather {
         height: 37.5vh;
         position: relative;
         background-image: url('./../assets/img/background.png');
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
     .weather-banner {

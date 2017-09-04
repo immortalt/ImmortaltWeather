@@ -18,7 +18,7 @@ page-weather {
         background-size: cover;
         height: 37.5vh;
         position: relative;
-        background-image: url('./../../assets/img/background.png');
+        background-image: url('./../assets/img/background.png');
         background-size: contain;
         background-repeat: no-repeat;
     }
@@ -66,6 +66,9 @@ page-weather {
         }
         ion-col:nth-child(2) {
             color: map-get($colors, danger);
+        }
+        ion-col:nth-child(3) {
+            color: map-get($colors, dark);
         }
         //    color: #3cc59a;
         ion-icon {

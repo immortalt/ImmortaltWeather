@@ -75,14 +75,15 @@ export class WeatherPage {
     addModal.onDidDismiss(data => {
       console.log(data);
       if (data.city != null) {
-        AppConfig.cityname = data.city;
+        let city = data.city as HeWeather5.CityBasic;
+        AppConfig.cityname = city.city;
         this.settings.load().then(() => {
-          let history: string[] = this.settings.settings.cityHistory;
+          let history: HeWeather5.CityBasic[] = this.settings.settings.cityHistory;
           if (history.length > 5) {
             history.pop();
           }
-          if (history.filter(t => t == AppConfig.cityname).length == 0) {
-            history.push(data.city);
+          if (history.filter(t => t.id == city.id).length == 0) {
+            history.push(city);
           }
           this.settings.setValue('cityHistory', history);
           this.settings.setValue('cityname', AppConfig.cityname);

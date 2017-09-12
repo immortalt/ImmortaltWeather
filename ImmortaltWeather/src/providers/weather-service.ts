@@ -16,10 +16,10 @@ export class WeatherService {
             let r = that.api.getData('http://www.nmc.cn/f/rest/autocomplete',
                 {
                     q: name,
-                    limit: 10
+                    limit: 5
                 });
-            r.subscribe((r: string) => {
-                let citys: City[] = [];
+            r.subscribe(async (r: string) => {
+                let citys: HeWeather5.CityBasic[] = [];
                 let strcitys = r.split('\n');
                 for (var i in strcitys) {
                     let vals = strcitys[i].split('|');
@@ -32,7 +32,11 @@ export class WeatherService {
                         pingying: vals[4]
                     }
                     if (city.name != null) {
-                        citys.push(city);
+                        let citydata = await that.getCityData(city.name) as HeWeather5.CityBasic;
+                        if (citydata != null) {
+                            console.log(citydata);
+                            citys.push(citydata);
+                        }
                     }
                 }
                 // console.log(citys);
@@ -74,6 +78,32 @@ export class WeatherService {
                 if (r != null && r.HeWeather5 != null) {
                     console.log(r.HeWeather5[0]);
                     resolve(r.HeWeather5[0]);
+                } else {
+                    console.log(r);
+                    resolve(null);
+                }
+            }, err => {
+                console.log(err);
+                resolve(null);
+            });
+        });
+        return p;
+    }
+    getCityData(city: string) {
+        var that = this;
+        var p = new Promise(function (resolve, reject) {
+            let params: any = {};
+            params['name'] = city;
+            let r = that.api.getData(that.baseurl + 'city/query', params);
+            r.subscribe(r => {
+                if (r != null && r.HeWeather5 != null) {
+                    console.log(r.HeWeather5[0]);
+                    if (r.HeWeather5[0].status == 'ok') {
+                        resolve(r.HeWeather5[0].basic);
+                    } else {
+                        console.log(r);
+                        resolve(null);
+                    }
                 } else {
                     console.log(r);
                     resolve(null);

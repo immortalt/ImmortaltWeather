@@ -173,4 +173,22 @@ export module HeWeather5 {
         status: string;
         suggestion: Suggestion;
     }
+
+    export interface CityBasic {
+        city: string;
+        cnty: string;
+        id: string;
+        lat: string;
+        lon: string;
+        prov: string;
+    }
+
+    export interface HeWeather5City {
+        basic: CityBasic;
+        status: string;
+    }
+
+    export interface CityData {
+        HeWeather5City: HeWeather5City[];
+    }
 }

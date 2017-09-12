@@ -10,22 +10,22 @@
 
 
 <ion-content>
-    <ion-searchbar [ngModel]="cityname" (ionInput)="getCitys($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
-    <ion-item-group *ngIf="cityname==null">
+    <ion-searchbar (ionInput)="getCitys($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+    <ion-item-group *ngIf="isShowHistory()">
         <ion-item-divider color="light">历史</ion-item-divider>
         <button ion-item (click)="selectCity(city)" *ngFor="let city of cityHistory">
                     <ion-icon item-start name="locate"></ion-icon>
-                <h2>{{city}}</h2>
+                <h2>{{city.city}}</h2>
               </button>
     </ion-item-group>
     <ion-list>
-        <button ion-item (click)="selectCity(city.name)" *ngFor="let city of currentCitys">
+        <button ion-item (click)="selectCity(city)" *ngFor="let city of currentCitys">
       <!-- <ion-avatar > -->
           <ion-icon item-start name="locate"></ion-icon>
       <!-- </ion-avatar> -->
-      <h2>{{city.name}}</h2>
-      <p>邮编：{{city.zipcode}}</p>
-      <ion-note item-end>{{city.province}}</ion-note>
+      <h2>{{city.city}}</h2>
+      <!-- <p>邮编：{{city.zipcode}}</p> -->
+      <ion-note item-end>{{city.prov}}</ion-note>
     </button>
     </ion-list>
 </ion-content>

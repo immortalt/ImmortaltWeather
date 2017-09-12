@@ -21,11 +21,10 @@
             </ion-item>
 
             <ion-item>
-                <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
-                <ion-select formControlName="option3">
-                    <ion-option value="1" checked="true">1</ion-option>
-                    <ion-option value="2">2</ion-option>
-                    <ion-option value="3">3</ion-option>
+                <ion-label>{{ 'SETTINGS_TEMP_FORMAT' | translate }}</ion-label>
+                <ion-select formControlName="option3" okText="{{'OK_BUTTON' | translate}}" cancelText="{{'CANCEL_BUTTON' | translate}}">
+                    <ion-option value="1" checked="true">摄氏度</ion-option>
+                    <ion-option value="2">华氏度</ion-option>
                 </ion-select>
             </ion-item>
 

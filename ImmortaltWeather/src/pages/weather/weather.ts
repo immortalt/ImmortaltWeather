@@ -19,11 +19,28 @@ export class WeatherPage {
   cond: HeWeather5.Cond3 = {} as HeWeather5.Cond3;//当前情况
   city: HeWeather5.City = {} as HeWeather5.City;//城市空气指数
   wind: HeWeather5.Wind3 = {} as HeWeather5.Wind3;//风向
-
+  audio;//audio组件
+  audioInited: boolean;//audio是否初始化
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
     , public weatherService: WeatherService, public settings: Settings) {
   }
   ngOnInit() {
+    this.audio = document.getElementById('bgmusic') as HTMLAudioElement;
+    var that = this;
+    document.addEventListener("touchstart",
+      () => {
+        console.log('touchstart');
+        that.initAudio('touchstart');
+      }
+      , false);
+  }
+  initAudio(origin) {
+    console.log("initAudio-origin", origin);
+    // alert(origin);
+    if (this.audioInited == false) {
+      this.audio.play();
+      this.audioInited = true;
+    }
   }
   ionViewDidLoad() {
     this.updateWeather(false);
@@ -93,5 +110,15 @@ export class WeatherPage {
       }
     })
     addModal.present();
+  }
+  playWeather() {
+    var str = "今天天气" + this.cond.txt + "，温度" + this.now.tmp + "摄氏度，湿度" + this.now.hum + "%";
+    this.speakText(str);
+  }
+  speakText(str) {
+    // baidu语音接口
+    var url = "http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&text=" + encodeURI(str);
+    this.audio.src = url;
+    this.audio.play();
   }
 }

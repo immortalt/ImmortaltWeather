@@ -13,6 +13,13 @@ page-weather {
     .toolbar-title {
         color: $banner-text-color;
     }
+    .btu-sound {
+        float: right;
+        position: absolute;
+        right: 2px;
+        bottom: -1px;
+        color: white;
+    }
     /* Image */
     .weather-image {
         background-size: cover;

@@ -17,6 +17,8 @@
             <span class="city">{{cityname}} </span>
             <span class="weather-time">更新时间：{{update.loc}}</span>
         </section>
+        <button ion-button class="btu-sound" (click)="playWeather()"><ion-icon name="volume-up"></ion-icon>
+            语音播报</button>
     </section>
     <!-- <h4 text-center>当前天气</h4> -->
     <section class="main-content">
@@ -128,6 +130,9 @@
 
     </section>
 </ion-content>
+<audio id="bgmusic" src="https://daoket.github.io/img/load.mp3" preload>
+    您的浏览器不支持 audio 标签，无法播放音乐。
+</audio>
 <!-- <ion-footer>
     <button ion-button large full no-margin color="danger">
       备用按钮

@@ -6,69 +6,31 @@
 
 </ion-header>
 <ion-content>
-  <ion-list  *ngIf="suggestion.comf!=null">
-    <ion-item-group>
-      <ion-item-divider color="light">舒适度指数</ion-item-divider>
+  <ion-list *ngIf="suggestion.comf!=null">
+    <!-- <ion-list-header>
+      外出推荐
+    </ion-list-header> -->
+    <ng-container *ngFor="let item of [
+    {'icon':'md-happy','title':'舒适度指数','note':suggestion.comf.brf,'des':suggestion.comf.txt},
+    {'icon':'ios-car','title':'洗车指数','note':suggestion.cw.brf,'des':suggestion.cw.txt},
+    {'icon':'ios-shirt','title':'穿衣指数','note':suggestion.drsg.brf,'des':suggestion.drsg.txt},
+    {'icon':'ios-snow','title':'感冒指数','note':suggestion.flu.brf,'des':suggestion.flu.txt},
+    {'icon':'ios-football','title':'运动指数','note':suggestion.sport.brf,'des':suggestion.sport.txt},
+    {'icon':'ios-plane','title':'旅游指数','note':suggestion.trav.brf,'des':suggestion.trav.txt},
+    {'icon':'md-glasses','title':'紫外线指数','note':suggestion.uv.brf,'des':suggestion.uv.txt}
+    ]">
       <ion-item>
-        <div>
-          <p> {{suggestion.comf.brf}}</p>
-          <p>{{suggestion.comf.txt}}</p>
-        </div>
+        <ion-icon name="{{item.icon}}" item-start color="danger"></ion-icon>
+        <ion-label>{{item.title}}</ion-label>
+        <ion-note item-end>{{item.note}}</ion-note>
       </ion-item>
-    </ion-item-group>
-    <ion-item-group>
-        <ion-item-divider color="light">洗车指数</ion-item-divider>
-        <ion-item>
-          <div>
-            <p> {{suggestion.cw.brf}}</p>
-            <p>{{suggestion.cw.txt}}</p>
-          </div>
-        </ion-item>
-      </ion-item-group>
-      <ion-item-group>
-          <ion-item-divider color="light">穿衣指数</ion-item-divider>
-          <ion-item>
-            <div>
-              <p> {{suggestion.drsg.brf}}</p>
-              <p>{{suggestion.drsg.txt}}</p>
-            </div>
-          </ion-item>
-        </ion-item-group>
-        <ion-item-group>
-            <ion-item-divider color="light">感冒指数</ion-item-divider>
-            <ion-item>
-              <div>
-                <p> {{suggestion.flu.brf}}</p>
-                <p>{{suggestion.flu.txt}}</p>
-              </div>
-            </ion-item>
-          </ion-item-group>
-          <ion-item-group>
-              <ion-item-divider color="light">运动指数</ion-item-divider>
-              <ion-item>
-                <div>
-                  <p> {{suggestion.sport.brf}}</p>
-                  <p>{{suggestion.sport.txt}}</p>
-                </div>
-              </ion-item>
-            </ion-item-group>
-            <ion-item-group>
-                <ion-item-divider color="light">旅游指数</ion-item-divider>
-                <ion-item>
-                  <div>
-                    <p> {{suggestion.trav.brf}}</p>
-                    <p>{{suggestion.trav.txt}}</p>
-                  </div>
-                </ion-item>
-              </ion-item-group>
-              <ion-item-group>
-                  <ion-item-divider color="light">紫外线指数</ion-item-divider>
-                  <ion-item>
-                    <div>
-                      <p> {{suggestion.uv.brf}}</p>
-                      <p>{{suggestion.uv.txt}}</p>
-                    </div>
-                  </ion-item>
-                </ion-item-group>
+      <ion-card>
+        <ion-card-content>
+          {{item.des}}
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
   </ion-list>
+
+
 </ion-content>

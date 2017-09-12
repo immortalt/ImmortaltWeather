@@ -9,7 +9,7 @@ import { AppConfig } from './app.config';
 
 import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
-import { MapPage } from '../pages/map/map';
+// import { MapPage } from '../pages/map/map';
 import { SearchPage } from '../pages/search/search';
 import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -22,7 +22,7 @@ import { Api } from '../providers/api';
 import { Settings } from '../providers/settings';
 import { WeatherService } from '../providers/weather-service';
 
-import { Camera } from '@ionic-native/camera';
+// import { Camera } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -59,7 +59,7 @@ export function provideSettings(storage: Storage) {
     MyApp,
     CardsPage,
     ContentPage,
-    MapPage,
+    // MapPage,
     SearchPage,
     SettingsPage,
     TabsPage,
@@ -89,7 +89,7 @@ export function provideSettings(storage: Storage) {
     MyApp,
     CardsPage,
     ContentPage,
-    MapPage,
+    // MapPage,
     SearchPage,
     SettingsPage,
     TabsPage,
@@ -101,7 +101,7 @@ export function provideSettings(storage: Storage) {
   providers: [
     WeatherService,
     Api,
-    Camera,
+    // Camera,
     SplashScreen,
     StatusBar,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },

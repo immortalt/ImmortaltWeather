@@ -5,6 +5,7 @@ import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
 import { HeWeather5 } from '../../models/HeWeather5';
 import { SearchPage } from '../../pages/search/search';
+import { Settings } from '../../providers/providers';
 
 @Component({
   selector: 'page-weather',
@@ -20,7 +21,7 @@ export class WeatherPage {
   wind: HeWeather5.Wind3 = {} as HeWeather5.Wind3;//风向
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
-    , public weatherService: WeatherService) {
+    , public weatherService: WeatherService, public settings: Settings) {
   }
 
   ionViewDidLoad() {
@@ -53,13 +54,17 @@ export class WeatherPage {
   }
   //载入天气
   loadWeather() {
-    this.basic = AppConfig.weatherData.basic;
-    this.update = this.basic.update;
-    this.city = AppConfig.weatherData.aqi.city;
-    this.now = AppConfig.weatherData.now;
-    this.cond = AppConfig.weatherData.now.cond;
-    this.wind = this.now.wind;
-    this.cityname = this.basic.city;
+    try {
+      this.basic = AppConfig.weatherData.basic;
+      this.update = this.basic.update;
+      this.city = AppConfig.weatherData.aqi.city;
+      this.now = AppConfig.weatherData.now;
+      this.cond = AppConfig.weatherData.now.cond;
+      this.wind = this.now.wind;
+      this.cityname = this.basic.city;
+    } catch (err) {
+      console.log(err);
+    }
   }
   getWeatherIcon(code: string): string {
     return AppConfig.weatherFolder + code + ".png";
@@ -71,7 +76,18 @@ export class WeatherPage {
       console.log(data);
       if (data.city != null) {
         AppConfig.cityname = data.city;
-        this.updateWeather(true);
+        this.settings.load().then(() => {
+          let history: string[] = this.settings.settings.cityHistory;
+          if (history.length > 5) {
+            history.pop();
+          }
+          if (history.filter(t => t == AppConfig.cityname).length == 0) {
+            history.push(data.city);
+          }
+          this.settings.setValue('cityHistory', history);
+          this.settings.setValue('cityname', AppConfig.cityname);
+          this.updateWeather(true);
+        });
       }
     })
     addModal.present();

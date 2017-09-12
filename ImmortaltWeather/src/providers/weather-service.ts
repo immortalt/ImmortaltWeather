@@ -31,7 +31,9 @@ export class WeatherService {
                         province: vals[3],
                         pingying: vals[4]
                     }
-                    citys.push(city);
+                    if (city.name != null) {
+                        citys.push(city);
+                    }
                 }
                 // console.log(citys);
                 resolve(citys);

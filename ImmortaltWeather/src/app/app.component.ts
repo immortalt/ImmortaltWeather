@@ -4,17 +4,18 @@ import { Platform, Nav, Config } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { CardsPage } from '../pages/cards/cards';
-import { ContentPage } from '../pages/content/content';
+// import { CardsPage } from '../pages/cards/cards';
+// import { ContentPage } from '../pages/content/content';
 import { FirstRunPage } from '../pages/pages';
-import { MapPage } from '../pages/map/map';
-import { SearchPage } from '../pages/search/search';
-import { SettingsPage } from '../pages/settings/settings';
+// import { MapPage } from '../pages/map/map';
+// import { SearchPage } from '../pages/search/search';
+// import { SettingsPage } from '../pages/settings/settings';
 import { TabsPage } from '../pages/tabs/tabs';
-import { TutorialPage } from '../pages/tutorial/tutorial';
-import { WeatherPage } from '../pages/weather/weather';
-import { TrendPage } from '../pages/trend/trend';
-import { SuggestionPage } from '../pages/suggestion/suggestion';
+// import { TutorialPage } from '../pages/tutorial/tutorial';
+// import { WeatherPage } from '../pages/weather/weather';
+// import { TrendPage } from '../pages/trend/trend';
+// import { SuggestionPage } from '../pages/suggestion/suggestion';
+import { AppConfig } from '../app/app.config';
 
 import { Settings } from '../providers/providers';
 
@@ -28,22 +29,23 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Suggestion', component: SuggestionPage },
-    { title: 'Trend', component: WeatherPage },
-    { title: 'Weather', component: WeatherPage },
-    { title: 'Tutorial', component: TutorialPage },
-    { title: 'Tabs', component: TabsPage },
-    { title: 'Cards', component: CardsPage },
-    { title: 'Content', component: ContentPage },
-    { title: 'Map', component: MapPage },
-    { title: 'Settings', component: SettingsPage },
-    { title: 'Search', component: SearchPage }
-  ]
+  // pages: any[] = [
+  //   { title: 'Suggestion', component: SuggestionPage },
+  //   { title: 'Trend', component: WeatherPage },
+  //   { title: 'Weather', component: WeatherPage },
+  //   { title: 'Tutorial', component: TutorialPage },
+  //   { title: 'Tabs', component: TabsPage },
+  //   { title: 'Cards', component: CardsPage },
+  //   { title: 'Content', component: ContentPage },
+  //   { title: 'Map', component: MapPage },
+  //   { title: 'Settings', component: SettingsPage },
+  //   { title: 'Search', component: SearchPage }
+  // ]
 
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     this.initTranslate();
     settings.load().then(() => {
+      AppConfig.cityname = settings.settings.cityname;
       let isFirstStart = settings.settings.isFirstStart;
       console.log('settings.settings', settings.settings);
       if (isFirstStart == true) {

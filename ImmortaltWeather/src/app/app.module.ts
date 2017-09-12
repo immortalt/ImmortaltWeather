@@ -48,7 +48,8 @@ export function provideSettings(storage: Storage) {
     option3: '3',
     option4: 'Hello',
     isFirstStart: true,
-    cityname: '昆明'
+    cityname: null,
+    cityHistory: []
   });
 }
 

@@ -2,14 +2,24 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { WeatherService } from '../../providers/providers';
 import { City } from '../../models/city';
+import { Settings } from '../../providers/providers';
 
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html'
 })
 export class SearchPage {
+  cityname: string;
   currentCitys: City[];
-  constructor(public viewCtrl: ViewController, public weatherService: WeatherService) { }
+  cityHistory: string[];
+  constructor(public viewCtrl: ViewController, public weatherService: WeatherService
+    , public settings: Settings) {
+  }
+  ionViewDidEnter() {
+    this.settings.getValue('cityHistory').then(data => {
+      this.cityHistory = data;
+    });
+  }
   close() {
     this.viewCtrl.dismiss({ city: null });
   }
@@ -20,11 +30,12 @@ export class SearchPage {
       this.currentCitys = [];
       return;
     }
-    let citys = await this.weatherService.searchCity(val);
-    this.currentCitys = citys as City[];
+    let citys: City[] = await this.weatherService.searchCity(val) as City[];
+    console.log('citys', citys);
+    this.currentCitys = citys;
   }
   //选择城市
-  selectCity(city: City) {
-    this.viewCtrl.dismiss({ city: city.name });
+  selectCity(city: string) {
+    this.viewCtrl.dismiss({ city: city });
   }
 }

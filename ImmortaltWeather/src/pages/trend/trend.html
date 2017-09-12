@@ -1,90 +1,90 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'TREND_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'TREND_TITLE' | translate }}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-list *ngIf="hourly_forecast!=[]">
-    <ion-item-group>
-      <ion-item-divider color="light">未来小时趋势</ion-item-divider>
-      <ion-item *ngFor="let h of hourly_forecast;">
-        <p>{{h.date}}</p>
-        <p>湿度：{{h.hum}}%</p>
-        <p>降水概率：{{h.pop}}%</p>
-        <p>气压：{{h.pres}}</p>
-        <p>温度：{{h.tmp}}°C</p>
-        <div>
-          <p>风向：{{h.wind.dir}}</p>
-          <p>风向角度：{{h.wind.deg}}</p>
-          <p>风力：{{h.wind.sc}}</p>
-          <p>风速：{{h.wind.spd}}</p>
-        </div>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+    <ion-list *ngIf="hourly_forecast!=[]">
+        <ion-item-group>
+            <ion-item-divider color="light">未来小时趋势</ion-item-divider>
+            <ion-item *ngFor="let h of hourly_forecast;">
+                <p>{{h.date}}</p>
+                <p>湿度：{{h.hum}}%</p>
+                <p>降水概率：{{h.pop}}%</p>
+                <p>气压：{{h.pres}}</p>
+                <p>温度：{{h.tmp | TempPipe}}</p>
+                <div>
+                    <p>风向：{{h.wind.dir}}</p>
+                    <p>风向角度：{{h.wind.deg}}</p>
+                    <p>风力：{{h.wind.sc}}</p>
+                    <p>风速：{{h.wind.spd}}</p>
+                </div>
+            </ion-item>
+        </ion-item-group>
+    </ion-list>
 
-  <ng-container *ngIf="daily_forecast!=[]">
-    <ion-card-header text-center>
-      未来7天趋势
-    </ion-card-header>
-    <ion-card *ngFor="let h of daily_forecast;">
-      <ion-card-content>
-        <h2 text-left>
-          <ion-icon name="md-calendar">
+    <ng-container *ngIf="daily_forecast!=[]">
+        <ion-card-header text-center>
+            未来7天趋势
+        </ion-card-header>
+        <ion-card *ngFor="let h of daily_forecast;">
+            <ion-card-content>
+                <h2 text-left>
+                    <ion-icon name="md-calendar">
 
-          </ion-icon>
-          {{h.date}}
-        </h2>
-        <ion-row *ngIf="h.cond!=null">
-          <ion-col>
-            白天天气：{{h.cond.txt_d}}
-            <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_d)}}">
-          </ion-col>
-          <ion-col>
-            夜晚天气：{{h.cond.txt_n}}
-            <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_n)}}">
-          </ion-col>
-        </ion-row>
+                    </ion-icon>
+                    {{h.date}}
+                </h2>
+                <ion-row *ngIf="h.cond!=null">
+                    <ion-col>
+                        白天天气：{{h.cond.txt_d}}
+                        <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_d)}}">
+                    </ion-col>
+                    <ion-col>
+                        夜晚天气：{{h.cond.txt_n}}
+                        <img height="30" width="30" src="{{getWeatherIcon(h.cond.code_n)}}">
+                    </ion-col>
+                </ion-row>
 
-        <ion-row *ngIf="h.tmp!=null">
-          <ion-col>
-            最高温度：{{h.tmp.max}}°C
-          </ion-col>
-          <ion-col>
-            最低温度：{{h.tmp.min}}°C
-          </ion-col>
-        </ion-row>
+                <ion-row *ngIf="h.tmp!=null">
+                    <ion-col>
+                        最高温度：{{h.tmp.max | TempPipe}}
+                    </ion-col>
+                    <ion-col>
+                        最低温度：{{h.tmp.min | TempPipe}}
+                    </ion-col>
+                </ion-row>
 
-        <ion-row>
-          <ion-col>湿度：{{h.hum}}%</ion-col>
-          <ion-col>降水量：{{h.pcpn}}%</ion-col>
-          <ion-col>气压：{{h.pres}}</ion-col>
-          <ion-col>能见度：{{h.vis}}</ion-col>
-        </ion-row>
+                <ion-row>
+                    <ion-col>湿度：{{h.hum}}%</ion-col>
+                    <ion-col>降水量：{{h.pcpn}}%</ion-col>
+                    <ion-col>气压：{{h.pres}}</ion-col>
+                    <ion-col>能见度：{{h.vis}}</ion-col>
+                </ion-row>
 
-        <ion-row>
-          <ion-col>风向：{{h.wind.dir}}</ion-col>
-          <ion-col>角度：{{h.wind.deg}}°</ion-col>
-          <ion-col>风力：{{h.wind.sc}}</ion-col>
-          <ion-col>风速：{{h.wind.spd}}</ion-col>
-        </ion-row>
+                <ion-row>
+                    <ion-col>风向：{{h.wind.dir}}</ion-col>
+                    <ion-col>角度：{{h.wind.deg}}°</ion-col>
+                    <ion-col>风力：{{h.wind.sc}}</ion-col>
+                    <ion-col>风速：{{h.wind.spd}}</ion-col>
+                </ion-row>
 
-        <ion-row *ngIf="h.astro!=null">
-          <ion-col>月升：{{h.astro.mr}}</ion-col>
-          <ion-col>月落：{{h.astro.ms}}</ion-col>
-          <ion-col>日出：{{h.astro.sr}}</ion-col>
-          <ion-col>日落：{{h.astro.ss}}</ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
+                <ion-row *ngIf="h.astro!=null">
+                    <ion-col>月升：{{h.astro.mr}}</ion-col>
+                    <ion-col>月落：{{h.astro.ms}}</ion-col>
+                    <ion-col>日出：{{h.astro.sr}}</ion-col>
+                    <ion-col>日落：{{h.astro.ss}}</ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </ng-container>
 
 
-  <!-- <ion-list *ngIf="daily_forecast!=[]">
+    <!-- <ion-list *ngIf="daily_forecast!=[]">
     <ion-item-group>
       <ion-item-divider color="light">未来7天趋势</ion-item-divider>
       <ion-item *ngFor="let h of daily_forecast;">

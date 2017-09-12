@@ -67,6 +67,7 @@ export class SettingsPage extends AbstractComponent {
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       console.log(v);
+      AppConfig.tempFormat = this.options.option3;
       this.settings.merge(this.form.value);
     });
   }

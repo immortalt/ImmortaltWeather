@@ -1,6 +1,7 @@
 import { HeWeather5 } from '../models/HeWeather5';
 
 export class AppConfig {
+    public static tempFormat: number = 1;//温度格式:1摄氏度2华氏度
     /**
              * IP
              */
@@ -32,9 +33,9 @@ export class AppConfig {
         dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
         dayShortNames: ['周天', '周一', '周二', '周三', '周四', '周五', '周六']
     };
-     /** 
-     * 加载动画参数
-    */
+    /** 
+    * 加载动画参数
+   */
     static toastParam = {
         /**
          * 提示信息位置

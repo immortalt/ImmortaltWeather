@@ -33,7 +33,7 @@
                 <ion-col text-center>
                     <ion-icon name="ios-thermometer-outline"></ion-icon>
                     <span class="item-block flex-self">
-                            温度：{{now.tmp}}°C
+                            温度：{{now.tmp | TempPipe}}
                     </span>
                 </ion-col>
                 <ion-col text-center>
@@ -47,7 +47,7 @@
         <ion-grid class="listing-details">
             <ion-row>
                 <ion-col col-6>
-                    <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl | DataPipe}}°C
+                    <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl | TempPipe}}
                 </ion-col>
                 <ion-col col-6>
                     <ion-icon name="ios-water"></ion-icon>降水量：{{now.pcpn | DataPipe}}

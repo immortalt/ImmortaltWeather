@@ -29,6 +29,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DataPipe } from '../pipes/Data.pipe';
+import { TempPipe } from '../pipes/Temp.pipe';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -68,9 +69,9 @@ export function provideSettings(storage: Storage) {
     TrendPage,
     SuggestionPage,
 
-    DataPipe
+    DataPipe, TempPipe
   ],
-  exports: [DataPipe],
+  exports: [DataPipe, TempPipe],
   imports: [
     BrowserModule,
     HttpModule,

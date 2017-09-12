@@ -1,37 +1,30 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
+import { WeatherService } from '../../providers/providers';
+import { City } from '../../models/city';
 
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html'
 })
 export class SearchPage {
-  
-  currentItems: any = [];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
-
-  // /**
-  //  * Perform a service for the proper items.
-  //  */
-  // getItems(ev) {
-  //   let val = ev.target.value;
-  //   if (!val || !val.trim()) {
-  //     this.currentItems = [];
-  //     return;
-  //   }
-  //   this.currentItems = this.items.query({
-  //     name: val
-  //   });
-  // }
-
-  // /**
-  //  * Navigate to the detail page for this item.
-  //  */
-  // openItem(item: Item) {
-  //   this.navCtrl.push(ItemDetailPage, {
-  //     item: item
-  //   });
-  // }
-
+  currentCitys: City[];
+  constructor(public viewCtrl: ViewController, public weatherService: WeatherService) { }
+  close() {
+    this.viewCtrl.dismiss({ city: null });
+  }
+  //查找城市
+  async getCitys(ev) {
+    let val = ev.target.value;
+    if (!val || !val.trim()) {
+      this.currentCitys = [];
+      return;
+    }
+    let citys = await this.weatherService.searchCity(val);
+    this.currentCitys = citys as City[];
+  }
+  //选择城市
+  selectCity(city: City) {
+    this.viewCtrl.dismiss({ city: city.name });
+  }
 }

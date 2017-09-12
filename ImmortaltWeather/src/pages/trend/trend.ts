@@ -16,14 +16,16 @@ export class TrendPage {
   constructor(public navCtrl: NavController, public navParams: NavParams
     , public weatherService: WeatherService) { }
   ionViewDidLoad() {
-    this.uopdateWeather(false);
+    this.updateWeather(false);
   }
   //更新天气
   //force：是否强制刷新
-  async uopdateWeather(force: boolean) {
+  async updateWeather(force: boolean) {
     if (AppConfig.weatherData == null || force) {//如果需要重新获取数据
-      AppConfig.cityname = await this.weatherService.getCity();
-      console.log('AppConfig.cityname', AppConfig.cityname);
+      if (AppConfig.cityname == null) {
+        AppConfig.cityname = await this.weatherService.getCity();
+        console.log('AppConfig.cityname', AppConfig.cityname);
+      }
       if (AppConfig.cityname != null) {
         this.cityname = AppConfig.cityname;
         AppConfig.weatherData = await this.weatherService.getWeatherData(AppConfig.cityname) as HeWeather5.Data;

@@ -4,6 +4,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
 import { HeWeather5 } from '../../models/HeWeather5';
+import { SearchPage } from '../../pages/search/search';
 
 @Component({
   selector: 'page-weather',
@@ -23,14 +24,17 @@ export class WeatherPage {
   }
 
   ionViewDidLoad() {
-    this.uopdateWeather(false);
+    this.updateWeather(false);
   }
+
   //更新天气
   //force：是否强制刷新
-  async uopdateWeather(force: boolean) {
+  async updateWeather(force: boolean) {
     if (AppConfig.weatherData == null || force) {//如果需要重新获取数据
-      AppConfig.cityname = await this.weatherService.getCity();
-      console.log('AppConfig.cityname', AppConfig.cityname);
+      if (AppConfig.cityname == null) {
+        AppConfig.cityname = await this.weatherService.getCity();
+        console.log('AppConfig.cityname', AppConfig.cityname);
+      }
       if (AppConfig.cityname != null) {
         this.cityname = AppConfig.cityname;
         AppConfig.weatherData = await this.weatherService.getWeatherData(AppConfig.cityname) as HeWeather5.Data;
@@ -55,17 +59,21 @@ export class WeatherPage {
     this.now = AppConfig.weatherData.now;
     this.cond = AppConfig.weatherData.now.cond;
     this.wind = this.now.wind;
+    this.cityname = this.basic.city;
   }
   getWeatherIcon(code: string): string {
     return AppConfig.weatherFolder + code + ".png";
   }
-  addPlace() {
-    // let addModal = this.modalCtrl.create(ItemCreatePage);
-    // addModal.onDidDismiss(item => {
-    //   if (item) {
-    //     this.items.add(item);
-    //   }
-    // })
-    // addModal.present();
+  switchPlace() {
+    // this.navCtrl.push(SearchPage);
+    let addModal = this.modalCtrl.create(SearchPage);
+    addModal.onDidDismiss(data => {
+      console.log(data);
+      if (data.city != null) {
+        AppConfig.cityname = data.city;
+        this.updateWeather(true);
+      }
+    })
+    addModal.present();
   }
 }

@@ -10,10 +10,6 @@ export class AppConfig {
          */
     public static cityname: any = null;
     /**
-         * 城市列表
-         */
-    public static citys: string[] = [];
-    /**
      * 得到的天气信息
      */
     public static weatherData: HeWeather5.Data = null;

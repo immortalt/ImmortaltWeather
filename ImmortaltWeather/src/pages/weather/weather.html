@@ -3,8 +3,9 @@
         <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
 
         <ion-buttons end>
-            <button ion-button icon-only (tap)="addPlace()">
-                <ion-icon name="add"></ion-icon>
+            <button ion-button icon-only (tap)="switchPlace()">
+                <ion-icon name="swap"></ion-icon>
+                切换城市
             </button>
         </ion-buttons>
     </ion-navbar>
@@ -13,7 +14,7 @@
 <ion-content fullscreen elestic-header>
     <section class="weather-image">
         <section class="weather-banner" padding>
-            <span class="city">{{basic.city}}&nbsp;{{cityname}} </span>
+            <span class="city">{{cityname}} </span>
             <span class="weather-time">更新时间：{{update.loc}}</span>
         </section>
     </section>
@@ -43,7 +44,7 @@
         </ion-grid>
         <ion-grid class="listing-details">
             <ion-row>
-                <ion-col col-6 >
+                <ion-col col-6>
                     <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl}}°C
                 </ion-col>
                 <ion-col col-6>

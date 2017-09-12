@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.immortalt.weather" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.immortalt.weather" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ImmortaltWeather</name>
     <description>不朽天气</description>
     <author email="mail.tqh@qq.com" href="http://immortalt.com/">immortalt</author>

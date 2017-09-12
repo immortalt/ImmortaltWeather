@@ -1,16 +1,16 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'SUGGESTION_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'SUGGESTION_TITLE' | translate }}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 <ion-content>
-  <ion-list *ngIf="suggestion.comf!=null">
-    <!-- <ion-list-header>
+    <ion-list *ngIf="suggestion.comf!=null">
+        <!-- <ion-list-header>
       外出推荐
     </ion-list-header> -->
-    <ng-container *ngFor="let item of [
+        <ng-container *ngFor="let item of [
     {'icon':'md-happy','title':'舒适度指数','note':suggestion.comf.brf,'des':suggestion.comf.txt},
     {'icon':'ios-car','title':'洗车指数','note':suggestion.cw.brf,'des':suggestion.cw.txt},
     {'icon':'ios-shirt','title':'穿衣指数','note':suggestion.drsg.brf,'des':suggestion.drsg.txt},
@@ -19,18 +19,18 @@
     {'icon':'ios-plane','title':'旅游指数','note':suggestion.trav.brf,'des':suggestion.trav.txt},
     {'icon':'md-glasses','title':'紫外线指数','note':suggestion.uv.brf,'des':suggestion.uv.txt}
     ]">
-      <ion-item>
-        <ion-icon name="{{item.icon}}" item-start color="danger"></ion-icon>
-        <ion-label>{{item.title}}</ion-label>
-        <ion-note item-end>{{item.note}}</ion-note>
-      </ion-item>
-      <ion-card>
-        <ion-card-content>
-          {{item.des}}
-        </ion-card-content>
-      </ion-card>
-    </ng-container>
-  </ion-list>
+            <ion-item>
+                <ion-icon name="{{item.icon}}" item-start color="primary"></ion-icon>
+                <ion-label>{{item.title}}</ion-label>
+                <ion-note item-end color="primary">{{item.note}}</ion-note>
+            </ion-item>
+            <ion-card>
+                <ion-card-content>
+                    {{item.des}}
+                </ion-card-content>
+            </ion-card>
+        </ng-container>
+    </ion-list>
 
 
 </ion-content>

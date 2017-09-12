@@ -8,7 +8,7 @@ import { AppConfig } from '../app/app.config';
 export class TempPipe implements PipeTransform {
     transform(value: number): string {
         if (AppConfig.tempFormat != 1) {
-            return (value * 33.8) + "°F";
+            return (32 + value * 1.8) + "°F";
         } else {
             return value + "°C";
         }

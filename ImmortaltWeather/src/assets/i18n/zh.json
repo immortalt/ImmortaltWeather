@@ -27,7 +27,9 @@
     "SETTINGS_OPTION3": "选项 3",
     "SETTINGS_OPTION4": "选项 4",
     "SETTINGS_PROFILE_BUTTON": "配置",
+    "SETTINGS_CLEAR_CACHE_BUTTON": "清除缓存",
     "SETTINGS_PAGE_PROFILE": "配置",
+
     "WELCOME_TITLE": "欢迎",
     "LOGIN_TITLE": "Sign in",
     "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",

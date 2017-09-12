@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Settings } from '../../providers/settings';
+import { AbstractComponent } from '../../interfaces/abstract-component';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -15,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-settings',
   templateUrl: 'settings.html'
 })
-export class SettingsPage {
+export class SettingsPage extends AbstractComponent {
   // Our local settings object
   options: any;
 
@@ -38,7 +39,9 @@ export class SettingsPage {
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    public alertCtrl: AlertController) {
+    super(null, navCtrl, null, null, null, alertCtrl);
   }
 
   _buildForm() {
@@ -91,5 +94,12 @@ export class SettingsPage {
 
   ngOnChanges() {
     console.log('Ng All Changes');
+  }
+  clearCache() {
+    this.confirm("清除缓存？", "您的城市搜索记录等所有信息都将被清除", con => {
+      if (con) {
+        this.settings.setAll({});
+      } 
+    });
   }
 }

@@ -45,16 +45,16 @@
         <ion-grid class="listing-details">
             <ion-row>
                 <ion-col col-6>
-                    <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl}}°C
+                    <ion-icon name="ios-flame"></ion-icon>体感温度：{{now.fl | DataPipe}}°C
                 </ion-col>
                 <ion-col col-6>
-                    <ion-icon name="ios-water"></ion-icon>降水量：{{now.pcpn}}
+                    <ion-icon name="ios-water"></ion-icon>降水量：{{now.pcpn | DataPipe}}
                 </ion-col>
                 <ion-col col-6>
-                    <ion-icon name="ios-speedometer-outline"></ion-icon>气压：{{now.pres}}
+                    <ion-icon name="ios-speedometer-outline"></ion-icon>气压：{{now.pres | DataPipe}}
                 </ion-col>
                 <ion-col col-6>
-                    <ion-icon name="ios-partly-sunny-outline"></ion-icon>能见度：{{now.vis}}
+                    <ion-icon name="ios-partly-sunny-outline"></ion-icon>能见度：{{now.vis | DataPipe}}
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -66,25 +66,25 @@
                 <ion-col text-center>
                     <ion-icon name="ios-swap"></ion-icon>
                     <span class="item-block flex-self">
-                            风向：{{wind.dir}}
+                            风向：{{wind.dir | DataPipe}}
                     </span>
                 </ion-col>
                 <ion-col text-center>
                     <ion-icon name="ios-send-outline"></ion-icon>
                     <span class="item-block flex-self">
-                            风向角度：{{wind.deg}}
+                            风向角度：{{wind.deg | DataPipe}}
                         </span>
                 </ion-col>
                 <ion-col text-center>
                     <ion-icon name="md-aperture"></ion-icon>
                     <span class="item-block flex-self">
-                            风力：{{wind.sc}}
+                            风力：{{wind.sc | DataPipe}}
                         </span>
                 </ion-col>
                 <ion-col text-center>
                     <ion-icon name="ios-jet"></ion-icon>
                     <span class="item-block flex-self">
-                                风速：{{wind.spd}}
+                                风速：{{wind.spd | DataPipe}}
                     </span>
                 </ion-col>
             </ion-row>
@@ -98,13 +98,13 @@
                 <ion-col text-center>
                     <ion-icon name="ios-ribbon"></ion-icon>
                     <span class="item-block flex-self">
-                                空气质量等级：{{city.qlty}}
+                                空气质量等级：{{city.qlty | DataPipe}}
                         </span>
                 </ion-col>
                 <ion-col text-center>
                     <ion-icon name="ios-nuclear-outline"></ion-icon>
                     <span class="item-block flex-self">
-                                空气污染指数：{{city.aqi}}
+                                空气污染指数：{{city.aqi | DataPipe}}
                             </span>
                 </ion-col>
             </ion-row>
@@ -112,16 +112,16 @@
 
         <ion-grid class="listing-details">
             <ion-row>
-                <ion-col col-6>
+                <ion-col col-6 *ngIf="city.co">
                     一氧化碳：{{city.co}}
                 </ion-col>
-                <ion-col col-6>
+                <ion-col col-6 *ngIf="city.no2">
                     二氧化氮：{{city.no2}}
                 </ion-col>
-                <ion-col col-6>臭氧：{{city.o3}}</ion-col>
-                <ion-col col-6>pm10：{{city.pm10}}</ion-col>
-                <ion-col col-6>pm25：{{city.pm25}}</ion-col>
-                <ion-col col-6>二氧化硫：{{city.so2}}</ion-col>
+                <ion-col col-6 *ngIf="city.o3">臭氧：{{city.o3}}</ion-col>
+                <ion-col col-6 *ngIf="city.pm10">pm10：{{city.pm10}}</ion-col>
+                <ion-col col-6 *ngIf="city.pm25">pm25：{{city.pm25}}</ion-col>
+                <ion-col col-6 *ngIf="city.so2">二氧化硫：{{city.so2}}</ion-col>
             </ion-row>
         </ion-grid>
 

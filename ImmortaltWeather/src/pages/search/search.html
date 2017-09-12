@@ -1,10 +1,12 @@
 <ion-header>
-
     <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only (click)="close()">
+                            <ion-icon name="arrow-back" class="searchButton"></ion-icon>
+                            返回
+                        </button>
+        </ion-buttons>
         <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
-        <button ion-button clear end (click)="close()">
-          <ion-icon name="arrow-back"></ion-icon>
-          返回</button>
     </ion-navbar>
 </ion-header>
 

@@ -23,7 +23,8 @@ export class WeatherPage {
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
     , public weatherService: WeatherService, public settings: Settings) {
   }
-
+  ngOnInit() {
+  }
   ionViewDidLoad() {
     this.updateWeather(false);
   }

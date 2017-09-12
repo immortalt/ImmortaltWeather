@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
+import { AppConfig } from "../../app/app.config";
 import { Settings } from '../../providers/settings';
+import { AbstractComponent } from '../../interfaces/abstract-component';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -15,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   selector: 'page-settings',
   templateUrl: 'settings.html'
 })
-export class SettingsPage {
+export class SettingsPage extends AbstractComponent {
   // Our local settings object
   options: any;
 
@@ -38,7 +40,10 @@ export class SettingsPage {
     public settings: Settings,
     public formBuilder: FormBuilder,
     public navParams: NavParams,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    public alertCtrl: AlertController,
+    public toastCtrl: ToastController) {
+    super(null, navCtrl, toastCtrl, null, null, alertCtrl);
   }
 
   _buildForm() {
@@ -61,6 +66,7 @@ export class SettingsPage {
 
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
+      console.log(v);
       this.settings.merge(this.form.value);
     });
   }
@@ -84,12 +90,19 @@ export class SettingsPage {
     this.settings.load().then(() => {
       this.settingsReady = true;
       this.options = this.settings.allSettings;
-
       this._buildForm();
     });
   }
 
   ngOnChanges() {
     console.log('Ng All Changes');
+  }
+  clearCache() {
+    this.confirm("清除缓存？", "您的城市搜索记录等所有信息都将被清除", con => {
+      if (con) {
+        this.settings.setAll({});
+        this.showMessage("清除缓存成功");
+      }
+    });
   }
 }

@@ -32,4 +32,25 @@ export class AppConfig {
         dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
         dayShortNames: ['周天', '周一', '周二', '周三', '周四', '周五', '周六']
     };
+     /** 
+     * 加载动画参数
+    */
+    static toastParam = {
+        /**
+         * 提示信息位置
+         */
+        position: {
+            top: 'top',
+            middle: 'middle',
+            bottom: 'bottom'
+        },
+        /**
+         * 默认关闭时间
+         */
+        duration: 1500,
+        /**
+         * 关闭按钮默认文字
+         */
+        clostBtnText: '关闭'
+    };
 }

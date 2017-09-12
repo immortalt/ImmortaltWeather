@@ -24,7 +24,7 @@ import { TranslateService } from '@ngx-translate/core'
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = FirstRunPage;
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -43,6 +43,16 @@ export class MyApp {
 
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     this.initTranslate();
+    settings.load().then(() => {
+      let isFirstStart = settings.settings.isFirstStart;
+      console.log('settings.settings', settings.settings);
+      if (isFirstStart == true) {
+        settings.setValue("isFirstStart", false);
+        this.rootPage = FirstRunPage;
+      } else {
+        this.rootPage = TabsPage;
+      }
+    });
   }
 
   ionViewDidLoad() {

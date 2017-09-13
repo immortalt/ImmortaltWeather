@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
@@ -10,13 +10,17 @@ import { HeWeather5 } from '../../models/HeWeather5';
 })
 export class SuggestionPage {
   cityname: string;
-  suggestion:HeWeather5.Suggestion = {} as HeWeather5.Suggestion;//生活建议
+  suggestion: HeWeather5.Suggestion = {} as HeWeather5.Suggestion;//生活建议
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public weatherService: WeatherService) { }
-    ionViewDidLoad() {
-      this.updateWeather(false);
-    }
-   //更新天气
+    public weatherService: WeatherService, public events: Events) {
+    this.events.subscribe('updateWeather', (force) => {
+      this.updateWeather(force);
+    });
+  }
+  ionViewDidEnter() {
+    this.updateWeather(false);
+  }
+  //更新天气
   //force：是否强制刷新
   async updateWeather(force: boolean) {
     if (AppConfig.weatherData == null || force) {//如果需要重新获取数据
@@ -40,8 +44,9 @@ export class SuggestionPage {
       this.loadWeather();
     }
   }
-    //载入天气
-    loadWeather() {
-      this.suggestion = AppConfig.weatherData.suggestion;
-    }
+  //载入天气
+  loadWeather() {
+    console.log('loadWeather');    
+    this.suggestion = AppConfig.weatherData.suggestion;
+  }
 }

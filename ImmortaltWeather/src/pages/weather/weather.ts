@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, Events } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
@@ -22,7 +22,11 @@ export class WeatherPage {
   audio;//audio组件
   audioInited: boolean;//audio是否初始化
   constructor(public navCtrl: NavController, public modalCtrl: ModalController
-    , public weatherService: WeatherService, public settings: Settings) {
+    , public weatherService: WeatherService, public settings: Settings,
+    public events: Events) {
+    this.events.subscribe('updateWeather', (force) => {
+      this.updateWeather(force);
+    });
   }
   ngOnInit() {
     this.audio = document.getElementById('bgmusic') as HTMLAudioElement;
@@ -42,7 +46,7 @@ export class WeatherPage {
       this.audioInited = true;
     }
   }
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.updateWeather(false);
   }
 
@@ -72,6 +76,7 @@ export class WeatherPage {
   }
   //载入天气
   loadWeather() {
+    console.log('loadWeather');
     try {
       this.basic = AppConfig.weatherData.basic;
       this.update = this.basic.update;

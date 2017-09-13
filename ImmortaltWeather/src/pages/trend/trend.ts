@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
@@ -27,15 +27,18 @@ export class TrendPage {
     tmp: new CommonData("温度", null)
   };
 
-  chartType:string="温度";
+  chartType: string = "温度";
 
   constructor(public navCtrl: NavController, public navParams: NavParams
-    , public weatherService: WeatherService) { }
+    , public weatherService: WeatherService, public events: Events) {
+    this.events.subscribe('updateWeather', (force) => {
+      this.updateWeather(force);
+    });
+  }
 
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.updateWeather(false);
-
   }
 
 
@@ -65,6 +68,7 @@ export class TrendPage {
   }
   //载入天气
   loadWeather() {
+    console.log('loadWeather');    
     this.hourly_forecast = AppConfig.weatherData.hourly_forecast;
 
     for (let key in this.hourTrendData) {

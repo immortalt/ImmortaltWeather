@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ToastController, Events } from 'ionic-angular';
 
 import { AppConfig } from "../../app/app.config";
 import { Settings } from '../../providers/settings';
@@ -42,7 +42,7 @@ export class SettingsPage extends AbstractComponent {
     public navParams: NavParams,
     public translate: TranslateService,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController, public events: Events) {
     super(null, navCtrl, toastCtrl, null, null, alertCtrl);
   }
 
@@ -67,8 +67,12 @@ export class SettingsPage extends AbstractComponent {
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       console.log(v);
-      AppConfig.tempFormat = this.options.option3;
-      this.settings.merge(this.form.value);
+      this.settings.merge(this.form.value).then(() => {
+        if (AppConfig.tempFormat != this.options.option3) {
+          AppConfig.tempFormat = this.options.option3;
+          location.reload();
+        }
+      });
     });
   }
 

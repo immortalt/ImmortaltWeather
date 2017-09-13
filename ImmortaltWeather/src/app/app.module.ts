@@ -17,6 +17,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WeatherPage } from '../pages/weather/weather';
 import { TrendPage } from '../pages/trend/trend';
 import { SuggestionPage } from '../pages/suggestion/suggestion';
+import { RdChartComponent } from '../components/rd-chart/rd-chart';
 
 import { Api } from '../providers/api';
 import { Settings } from '../providers/settings';
@@ -68,7 +69,8 @@ export function provideSettings(storage: Storage) {
     WeatherPage,
     TrendPage,
     SuggestionPage,
-
+    
+    RdChartComponent,
     DataPipe, TempPipe
   ],
   exports: [DataPipe, TempPipe],

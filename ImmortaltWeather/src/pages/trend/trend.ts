@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/providers';
 import { AppConfig } from '../../app/app.config';
 import { HeWeather5 } from '../../models/HeWeather5';
+
+
+
 
 @Component({
   selector: 'page-trend',
@@ -13,11 +16,19 @@ export class TrendPage {
   cityname: string;
   hourly_forecast: HeWeather5.HourlyForecast[] = [];
   daily_forecast: HeWeather5.DailyForecast[] = [];
+
+  hourTrendLabels: any = ["湿度", "降水概率", "气压", "温度", "风向角度", "风力", "风速"];
+
   constructor(public navCtrl: NavController, public navParams: NavParams
     , public weatherService: WeatherService) { }
+
+
   ionViewDidLoad() {
     this.updateWeather(false);
+
   }
+
+
   //更新天气
   //force：是否强制刷新
   async updateWeather(force: boolean) {
@@ -50,4 +61,7 @@ export class TrendPage {
   getWeatherIcon(code: string): string {
     return AppConfig.weatherFolder + code + ".png";
   }
+
+
+
 }

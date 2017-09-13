@@ -49,7 +49,9 @@ export class WeatherPage {
   ionViewDidEnter() {
     this.updateWeather(false);
   }
-
+  doRefresh() {
+    this.updateWeather(true);
+  }
   //更新天气
   //force：是否强制刷新
   async updateWeather(force: boolean) {

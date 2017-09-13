@@ -1,5 +1,10 @@
 <ion-header no-border>
     <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only (tap)="doRefresh()">
+                        <ion-icon name="refresh"></ion-icon>                   
+                    </button>
+        </ion-buttons>
         <ion-title>{{ 'WEATHER_TITLE' | translate }}</ion-title>
 
         <ion-buttons end>

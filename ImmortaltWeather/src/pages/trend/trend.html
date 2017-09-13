@@ -8,16 +8,21 @@
 
 
 <ion-content>
+    <section padding>
+        <ion-segment class="ChartSegment" [(ngModel)]="chartType">
+            <ion-segment-button *ngFor="let seg of ['温度','降水概率','气压','湿度','详情']" [value]="seg">
+                {{seg}}
+            </ion-segment-button>
+        </ion-segment>
+    </section>
 
-    <ion-list *ngIf="hourly_forecast!=[]">
-        <ng-container *ngFor="let h of hourly_forecast;">
-            <rd-chart 
-            [rdLabel]="h.date" 
-            [rdLabels]="hourTrendLabels" 
-            [rdData]="[h.hum,h.pop,h.pres,h.tmp
-            ,h.wind.deg,h.wind.sc,h.wind.spd]"></rd-chart>
-        </ng-container>
 
+    <line-chart *ngIf="chartType===hourTrendData.hum.title" [lineTitle]="'未来小时'+hourTrendData.hum.title+'趋势图'" [lineData]="hourTrendData.hum" [lineLabels]="hourTrendData.date.val"></line-chart>
+    <line-chart *ngIf="chartType===hourTrendData.tmp.title" [lineTitle]="'未来小时'+hourTrendData.tmp.title+'趋势图'" [lineData]="hourTrendData.tmp" [lineLabels]="hourTrendData.date.val"></line-chart>
+    <line-chart *ngIf="chartType===hourTrendData.pop.title" [lineTitle]="'未来小时'+hourTrendData.pop.title+'趋势图'" [lineData]="hourTrendData.pop" [lineLabels]="hourTrendData.date.val"></line-chart>
+    <line-chart *ngIf="chartType===hourTrendData.pres.title" [lineTitle]="'未来小时'+hourTrendData.pres.title+'趋势图'" [lineData]="hourTrendData.pres" [lineLabels]="hourTrendData.date.val"></line-chart>
+    <ion-list *ngIf="hourly_forecast!=[]&&chartType==='详情'">
+        
         <ion-item-group>
             <ion-item-divider color="light">未来小时趋势</ion-item-divider>
             <ion-item *ngFor="let h of hourly_forecast;">

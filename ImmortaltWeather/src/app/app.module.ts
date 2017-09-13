@@ -47,11 +47,11 @@ export function provideSettings(storage: Storage) {
    */
   return new Settings(storage, {
     option1: true,
-    option2: 'Ionitron J. Framework',
+    option2: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1505300568472&di=960d3b53c3ca9f288c995a8afef0e565&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F44%2F84%2F96g58PICA7w_1024.jpg",
     option3: '1',
-    option4: 'Hello',
+    option4: true,
     isFirstStart: true,
-    cityname: null,
+    cityname: "昆明",
     cityHistory: []
   });
 }
@@ -69,9 +69,9 @@ export function provideSettings(storage: Storage) {
     WeatherPage,
     TrendPage,
     SuggestionPage,
-    
+
     LineChartComponent,
-    
+
     DataPipe, TempPipe
   ],
   exports: [DataPipe, TempPipe],

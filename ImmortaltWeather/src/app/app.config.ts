@@ -1,6 +1,10 @@
 import { HeWeather5 } from '../models/HeWeather5';
 
 export class AppConfig {
+    public static isAPP = true;//是否APP
+    public static enableNotification;//是否启用通知
+    public static enableBingPic: boolean;//启用必应每日一图
+    public static backImg: string;//背景图片
     public static tempFormat: number = 1;//温度格式:1摄氏度2华氏度
     /**
              * IP

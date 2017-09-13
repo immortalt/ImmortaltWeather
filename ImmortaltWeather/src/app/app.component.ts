@@ -45,6 +45,9 @@ export class MyApp {
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
     this.initTranslate();
     settings.load().then(() => {
+      AppConfig.enableNotification = settings.settings.option4;
+      AppConfig.enableBingPic = settings.settings.option1;
+      AppConfig.backImg = settings.settings.option2;
       AppConfig.tempFormat = settings.settings.option3;
       AppConfig.cityname = settings.settings.cityname;
       let isFirstStart = settings.settings.isFirstStart;

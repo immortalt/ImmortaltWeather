@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content fullscreen elestic-header>
-    <section class="weather-image">
+    <section class="weather-image" [ngStyle]="backImg">
         <section class="weather-banner" padding>
             <span class="city">{{cityname}} </span>
             <span class="weather-time">更新时间：{{update.loc}}</span>

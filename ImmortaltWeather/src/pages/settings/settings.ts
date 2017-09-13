@@ -50,24 +50,28 @@ export class SettingsPage extends AbstractComponent {
     let group: any = {
       option1: [this.options.option1],
       option2: [this.options.option2],
-      option3: [this.options.option3]
+      option3: [this.options.option3],
+      option4: [this.options.option4]
     };
 
-    switch (this.page) {
-      case 'main':
-        break;
-      case 'profile':
-        group = {
-          option4: [this.options.option4]
-        };
-        break;
-    }
+    // switch (this.page) {
+    //   case 'main':
+    //     break;
+    //   case 'profile':
+    //     group = {
+    //       option4: [this.options.option4]
+    //     };
+    //     break;
+    // }
     this.form = this.formBuilder.group(group);
 
     // Watch the form for changes, and
     this.form.valueChanges.subscribe((v) => {
       console.log(v);
       this.settings.merge(this.form.value).then(() => {
+        AppConfig.enableNotification = this.options.option4;
+        AppConfig.enableBingPic = this.options.option1;
+        AppConfig.backImg = this.options.option2;
         if (AppConfig.tempFormat != this.options.option3) {
           AppConfig.tempFormat = this.options.option3;
           location.reload();

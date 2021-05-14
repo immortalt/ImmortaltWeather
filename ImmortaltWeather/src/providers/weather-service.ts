@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { Api } from './api';
 import { HeWeather5 } from '../models/HeWeather5';
-import { City } from '../models/city';
+import { City } from '../models/City'
 
 @Injectable()
 export class WeatherService {
